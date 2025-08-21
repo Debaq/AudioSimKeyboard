@@ -1,65 +1,82 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#include <USBComposite.h>
+#include <Keyboard.h>  // Librería estándar en lugar de USBComposite
+
+// ============= DEFINIR CÓDIGOS DE TECLAS =============
+// El core oficial usa diferentes constantes
+#define KEY_F1  0xC2
+#define KEY_F2  0xC3
+#define KEY_F3  0xC4
+#define KEY_F4  0xC5
+#define KEY_F5  0xC6
+#define KEY_F6  0xC7
+#define KEY_F7  0xC8
+#define KEY_F8  0xC9
+#define KEY_F9  0xCA
+#define KEY_F10 0xCB
+#define KEY_F11 0xCC
+#define KEY_F12 0xCD
+
+#define KEY_LEFT_ARROW  0xD8
+#define KEY_RIGHT_ARROW 0xD7
+#define KEY_UP_ARROW    0xDA
+#define KEY_DOWN_ARROW  0xD9
+#define KEY_BACKSPACE   0xB2
+#define KEY_TAB         0xB3
+#define KEY_RETURN      0xB0
+#define KEY_ESC         0xB1
+#define KEY_PAGE_UP     0xD3
+#define KEY_PAGE_DOWN   0xD6
 
 // ============= CONFIGURACIÓN DE TIMING =============
-// Timing no bloqueante
-#define MAIN_LOOP_INTERVAL 5      // ms entre ciclos principales
-#define I2C_CHECK_INTERVAL 1000    // ms entre verificaciones I2C
-#define DEBUG_PRINT_INTERVAL 5000  // ms entre prints de debug
+#define MAIN_LOOP_INTERVAL 5
+#define I2C_CHECK_INTERVAL 1000
+#define DEBUG_PRINT_INTERVAL 5000
 
 // ============= CONFIGURACIÓN DE DEBOUNCE =============
-#define DEBOUNCE_SIMPLE true       // true = simple delay, false = algoritmo sofisticado
-
-// Timing diferenciado para botones y encoders
-#define BUTTON_DEBOUNCE_DELAY 50  // ms para botones (más conservador)
-#define ENCODER_DEBOUNCE_DELAY 5  // ms para encoders (más rápido)
-#define DEBOUNCE_SAMPLES 5         // muestras para debounce sofisticado
+#define DEBOUNCE_SIMPLE true
+#define BUTTON_DEBOUNCE_DELAY 50
+#define ENCODER_DEBOUNCE_DELAY 5
+#define DEBOUNCE_SAMPLES 5
 
 // ============= CONFIGURACIÓN PCF8575 =============
-#define PCF8575_ADDRESS 0x20       // Dirección I2C por defecto
-#define PCF8575_MAX_RETRIES 3      // Reintentos en caso de error
-#define PCF8575_RETRY_DELAY 10     // ms entre reintentos
+#define PCF8575_ADDRESS 0x20
+#define PCF8575_MAX_RETRIES 3
+#define PCF8575_RETRY_DELAY 10
 
 // ============= CONFIGURACIÓN ENCODERS =============
-// Pines para Encoder A
 #define ENCODER_A_PIN1 PA0
 #define ENCODER_A_PIN2 PA1
-
-// Pines para Encoder B  
 #define ENCODER_B_PIN1 PA2
 #define ENCODER_B_PIN2 PA3
 
 // ============= CONFIGURACIÓN USB HID =============
-#define USB_POLL_INTERVAL 1        // ms - polling rate USB
-#define KEY_PRESS_DURATION 10      // ms - duración de pulsación
-#define KEY_RELEASE_DELAY 5        // ms - delay entre teclas
+#define USB_POLL_INTERVAL 1
+#define KEY_PRESS_DURATION 10
+#define KEY_RELEASE_DELAY 5
 
 // ============= CONFIGURACIÓN DE BUFFER =============
-#define KEY_BUFFER_SIZE 32         // Tamaño del buffer circular
-#define BUFFER_OVERFLOW_THRESHOLD 24  // Avisar cuando llegue a este nivel
-#define COMBO_TIMEOUT 500          // ms para detectar combos
-#define MAX_COMBO_LENGTH 8         // Máximo teclas en un combo
+#define KEY_BUFFER_SIZE 32
+#define BUFFER_OVERFLOW_THRESHOLD 24
+#define COMBO_TIMEOUT 500
+#define MAX_COMBO_LENGTH 8
 
 // ============= CONFIGURACIÓN MODO CONFIG =============
-#define CONFIG_MODE_ENABLED true   // Habilitar modo configuración
-#define CONFIG_ENTRY_KEYS {0, 11}  // Índices de F1 y F12
-#define CONFIG_HOLD_TIME 3000      // ms para entrar al modo
-#define CONFIG_TIMEOUT 10000       // ms timeout de inactividad
+#define CONFIG_MODE_ENABLED true
+#define CONFIG_ENTRY_KEYS {0, 11}
+#define CONFIG_HOLD_TIME 3000
+#define CONFIG_TIMEOUT 10000
 
 // ============= MAPEO DE TECLAS =============
 struct KeyMap {
-  uint8_t port;              // 0 o 1 (P0 o P1 del PCF8575)
-  uint8_t pin;               // 0-7 (bit dentro del puerto)
-  uint8_t keycode;           // Código HID de la tecla (modificable)
-  const char description[10]; // Descripción para debug (fija)
+  uint8_t port;
+  uint8_t pin;
+  uint8_t keycode;
+  const char description[10];
 };
 
-// Mapeo de los 16 pines del PCF8575
-// NOTA: keycode ahora es modificable en runtime
 KeyMap BUTTON_MAP[16] = {
-  // Puerto P0 (bits 0-7) -> F1 a F8
   {0, 0, KEY_F1,  "F1"},
   {0, 1, KEY_F2,  "F2"},
   {0, 2, KEY_F3,  "F3"},
@@ -68,34 +85,28 @@ KeyMap BUTTON_MAP[16] = {
   {0, 5, KEY_F6,  "F6"},
   {0, 6, KEY_F7,  "F7"},
   {0, 7, KEY_F8,  "F8"},
-  
-  // Puerto P1 (bits 0-3) -> F9 a F12
   {1, 0, KEY_F9,  "F9"},
   {1, 1, KEY_F10, "F10"},
   {1, 2, KEY_F11, "F11"},
   {1, 3, KEY_F12, "F12"},
-  
-  // Puerto P1 (bits 4-7) -> letras a, b, c, d
   {1, 4, 'a', "a"},
-  {1, 5, 'b', "b"}, 
+  {1, 5, 'b', "b"},
   {1, 6, 'c', "c"},
   {1, 7, 'd', "d"}
 };
 
-// Mapeo de encoders (también modificable)
 struct EncoderMap {
-  uint8_t left_key;           // Tecla para giro a la izquierda
-  uint8_t right_key;          // Tecla para giro a la derecha
-  const char description[20]; // Descripción fija
+  uint8_t left_key;
+  uint8_t right_key;
+  const char description[20];
 };
 
 EncoderMap ENCODER_MAP[2] = {
-  {'c', 'v', "Encoder A"},    // Encoder A: izq=c, der=v
-  {'b', 'n', "Encoder B"}     // Encoder B: izq=b, der=n
+  {'c', 'v', "Encoder A"},
+  {'b', 'n', "Encoder B"}
 };
 
 // ============= ARRAYS DE TECLAS DISPONIBLES =============
-// Para el modo configuración - todas las teclas posibles
 const uint8_t AVAILABLE_LETTERS[] = {
   'a','b','c','d','e','f','g','h','i','j','k','l','m',
   'n','o','p','q','r','s','t','u','v','w','x','y','z'
@@ -121,44 +132,37 @@ const uint8_t AVAILABLE_SYMBOLS[] = {
 };
 
 // ============= PRIORIDADES DE TECLAS =============
-// Para el buffer con prioridad
 enum KeyPriority {
-  PRIORITY_CRITICAL = 0,    // Teclas de sistema/config
-  PRIORITY_HIGH = 1,        // F1-F12
-  PRIORITY_NORMAL = 5,      // Letras y números
-  PRIORITY_LOW = 9          // Otras teclas
+  PRIORITY_CRITICAL = 0,
+  PRIORITY_HIGH = 1,
+  PRIORITY_NORMAL = 5,
+  PRIORITY_LOW = 9
 };
 
-// Obtener prioridad de una tecla
 uint8_t getKeyPriority(uint8_t keycode) {
-  // Teclas de función tienen alta prioridad
   if(keycode >= KEY_F1 && keycode <= KEY_F12) {
     return PRIORITY_HIGH;
   }
-  // Teclas especiales
   if(keycode == KEY_ESC || keycode == KEY_RETURN) {
     return PRIORITY_HIGH;
   }
-  // Letras y números prioridad normal
-  if((keycode >= 'a' && keycode <= 'z') || 
-     (keycode >= '0' && keycode <= '9')) {
+  if((keycode >= 'a' && keycode <= 'z') ||
+    (keycode >= '0' && keycode <= '9')) {
     return PRIORITY_NORMAL;
-  }
-  // Todo lo demás baja prioridad
-  return PRIORITY_LOW;
+    }
+    return PRIORITY_LOW;
 }
 
 // ============= VALIDACIÓN Y DEBUG =============
-#define DEBUG_MODE true           // Habilitar mensajes debug
-#define SERIAL_BAUD 115200        // Velocidad del puerto serie
+#define DEBUG_MODE true
+#define SERIAL_BAUD 115200
 
-// Macro para debug condicional
 #if DEBUG_MODE
-  #define DEBUG_PRINT(x) Serial.print(x)
-  #define DEBUG_PRINTLN(x) Serial.println(x)
+#define DEBUG_PRINT(x) Serial.print(x)
+#define DEBUG_PRINTLN(x) Serial.println(x)
 #else
-  #define DEBUG_PRINT(x)
-  #define DEBUG_PRINTLN(x)
+#define DEBUG_PRINT(x)
+#define DEBUG_PRINTLN(x)
 #endif
 
 // ============= ESTADÍSTICAS DEL SISTEMA =============
@@ -172,7 +176,6 @@ struct SystemStats {
   unsigned long longestLoopTime;
 };
 
-// Estadísticas globales
 extern SystemStats systemStats;
 
 #endif

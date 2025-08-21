@@ -338,7 +338,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **Issues**: [GitHub Issues](https://github.com/debaq/AudioSimKeyboard/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/debaq/AudioSimKeyboard/discussions)
-- **Email**: your.email@example.com
+- **Email**: david.avila@uach.cl
 
 ## ⭐ Star History
 
@@ -351,14 +351,3 @@ If you find this project useful, please consider giving it a star!
 **Built with ❤️ for the maker community**
 ```
 
-Este README está completo con:
-- Badges profesionales
-- Documentación técnica detallada
-- Guías de instalación paso a paso
-- Tablas de especificaciones
-- Solución de problemas
-- Estructura del proyecto
-- Planes futuros
-- Información de contribución
-
-¿Quieres que ajuste o agregue algo específico?
