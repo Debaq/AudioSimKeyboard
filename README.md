@@ -336,15 +336,15 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-- **Issues**: [GitHub Issues](https://github.com/yourusername/advanced-usb-keyboard/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/advanced-usb-keyboard/discussions)
+- **Issues**: [GitHub Issues](https://github.com/debaq/AudioSimKeyboard/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/debaq/AudioSimKeyboard/discussions)
 - **Email**: your.email@example.com
 
 ## ⭐ Star History
 
 If you find this project useful, please consider giving it a star!
 
-[![Star History Chart](https://api.star-history.com/svg?repos=yourusername/advanced-usb-keyboard&type=Date)](https://star-history.com/#yourusername/advanced-usb-keyboard&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=debaq/AudioSimKeyboard&type=Date)](https://star-history.com/#debaq/AudioSimKeyboard&Date)
 
 ---
 
