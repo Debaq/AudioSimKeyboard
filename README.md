@@ -1,6 +1,6 @@
 ## 📄 **README.md Completo para GitHub**
 
-```markdown
+
 # 🎹 Advanced USB Keyboard Controller
 ### Custom 16-Button + Dual Encoder USB HID Keyboard with STM32 Blue Pill
 
@@ -39,15 +39,15 @@ A professional-grade programmable USB keyboard controller featuring runtime rema
 │  ┌───────────────────────────┐      │
 │  │ [USB-C]                   │      │
 │  │                           │      │
-│  │  PA0 ←→ Encoder A        │      │
-│  │  PA1 ←→ Encoder A        │      │
-│  │  PA2 ←→ Encoder B        │      │
-│  │  PA3 ←→ Encoder B        │      │
+│  │  PA0 ←→ Encoder A         │      │
+│  │  PA1 ←→ Encoder A         │      │
+│  │  PA2 ←→ Encoder B         │      │
+│  │  PA3 ←→ Encoder B         │      │
 │  │                           │      │
-│  │  PB6 ←→ SCL (I²C)        │      │
-│  │  PB7 ←→ SDA (I²C)        │      │
+│  │  PB6 ←→ SCL (I²C)         │      │
+│  │  PB7 ←→ SDA (I²C)         │      │
 │  └───────────────────────────┘      │
-│                                      │
+│                                     │
 │         PCF8575 Expander            │
 │  ┌───────────────────────────┐      │
 │  │  P0.0-P0.7 → Buttons 1-8  │      │
