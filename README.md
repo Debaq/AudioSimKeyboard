@@ -1,7 +1,5 @@
-## 📄 **README.md Completo para GitHub**
 
-
-# 🎹 Advanced USB Keyboard Controller
+# 🎹 AudioSimKeyboard
 ### Custom 16-Button + Dual Encoder USB HID Keyboard with STM32 Blue Pill
 
 [![Platform](https://img.shields.io/badge/Platform-STM32F103-blue)](https://www.st.com/en/microcontrollers-microprocessors/stm32f103.html)
